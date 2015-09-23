@@ -42,5 +42,11 @@ namespace StringCalculatorTest
         {
             Assert.AreEqual(6, _stringCalculator.Add("1\n2,3"));
         }
+
+        [Test]
+        public void Should_sum_when_input_contains_custom_delimiter()
+        {
+            Assert.AreEqual(3, _stringCalculator.Add("//;\n1;2"));
+        }
     }
 }

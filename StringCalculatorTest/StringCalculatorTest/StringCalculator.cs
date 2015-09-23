@@ -7,7 +7,13 @@ namespace StringCalculatorTest
     {
         public int Add(string input)
         {
-            var numbers = input.Split(new []{',','\n'}, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse);
+            char delimiter = ',';
+            if (input.StartsWith("//"))
+            {
+                delimiter = input[2];
+                input = input.Substring(3);
+            }
+            var numbers = input.Split(new []{delimiter,'\n'}, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse);
 
             return numbers.Sum();
         }

@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace StringCalculatorTest
 {
@@ -47,6 +48,14 @@ namespace StringCalculatorTest
         public void Should_sum_when_input_contains_custom_delimiter()
         {
             Assert.AreEqual(3, _stringCalculator.Add("//;\n1;2"));
+        }
+
+        [Test]
+        [ExpectedException(typeof(Exception), ExpectedMessage = "Negatives not allowed: -1,-3")]
+        public void Should_throw_an_exception_when_input_contains_negatives_numbers()
+        {
+            _stringCalculator.Add("-1,2,-3");
+            Assert.Fail();
         }
     }
 }

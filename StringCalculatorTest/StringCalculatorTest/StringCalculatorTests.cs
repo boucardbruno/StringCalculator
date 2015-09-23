@@ -31,11 +31,16 @@ namespace StringCalculatorTest
             Assert.AreEqual(3, _stringCalculator.Add("1,2"));
         }
 
-
         [Test]
         public void Should_sum_when_input_contains_unknown_number_of_numbers()
         {
             Assert.AreEqual(6, _stringCalculator.Add("1,2,3"));
+        }
+
+        [Test]
+        public void Should_sum_when_input_contains_new_lines_between_numbers()
+        {
+            Assert.AreEqual(6, _stringCalculator.Add("1\n2,3"));
         }
     }
 }

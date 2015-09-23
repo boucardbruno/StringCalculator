@@ -27,6 +27,19 @@ namespace StringCalculatorTest
 
             Assert.AreEqual(expected, actual);
         }
+
+
+        [Test]
+        public void Should_sum_when_input_contains_two_numbers()
+        {
+            StringCalculator stringCalculator = new StringCalculator();
+
+            int actual = stringCalculator.Add("1,2");
+            int expected = 3;
+
+            Assert.AreEqual(expected, actual);
+
+        }
     }
 
     public class StringCalculator
@@ -35,7 +48,9 @@ namespace StringCalculatorTest
         {
             if (string.IsNullOrEmpty(input))
                 return 0;
-            return int.Parse(input);
+            var numbers = input.Split(',');
+            if (numbers.Length == 1) return int.Parse(input);
+            return int.Parse(numbers[0]) + int.Parse(numbers[1]);
         }
     }
 }

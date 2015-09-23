@@ -4,16 +4,17 @@ namespace StringCalculatorTest
 {
     public class StringCalculatorTests
     {
+        private StringCalculator _stringCalculator;
 
+        [SetUp]
+        public void SetUp()
+        {
+            _stringCalculator = new StringCalculator();
+        }
         [Test]
         public void Should_return_zero_when_input_is_empty()
-        {  
-            StringCalculator stringCalculator = new StringCalculator();
-
-            int actual = stringCalculator.Add(string.Empty);
-            int expected = 0;
-
-            Assert.AreEqual(expected, actual);
+        {
+            Assert.AreEqual(0, _stringCalculator.Add(string.Empty));
         }
 
 
@@ -21,23 +22,14 @@ namespace StringCalculatorTest
         [TestCase("2", 2)]
         public void Should_return_number_when_input_contains_a_number(string input, int expected)
         {
-            StringCalculator stringCalculator = new StringCalculator();
-
-            int actual = stringCalculator.Add(input);
-
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, _stringCalculator.Add(input));
         }
 
 
         [Test]
         public void Should_sum_when_input_contains_two_numbers()
         {
-            StringCalculator stringCalculator = new StringCalculator();
-
-            int actual = stringCalculator.Add("1,2");
-            int expected = 3;
-
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(3, _stringCalculator.Add("1,2"));
 
         }
     }

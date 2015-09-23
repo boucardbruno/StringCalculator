@@ -17,13 +17,13 @@ namespace StringCalculatorTest
         }
 
 
-        [Test]
-        public void Should_return_number_when_input_contains_a_number()
+        [TestCase("1", 1)]
+        [TestCase("2", 2)]
+        public void Should_return_number_when_input_contains_a_number(string input, int expected)
         {
             StringCalculator stringCalculator = new StringCalculator();
 
-            int actual = stringCalculator.Add("1");
-            int expected = 1;
+            int actual = stringCalculator.Add(input);
 
             Assert.AreEqual(expected, actual);
         }
@@ -35,7 +35,7 @@ namespace StringCalculatorTest
         {
             if (string.IsNullOrEmpty(input))
                 return 0;
-            return 1;
+            return int.Parse(input);
         }
     }
 }

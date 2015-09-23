@@ -11,12 +11,12 @@ namespace StringCalculatorTest
         {
             _stringCalculator = new StringCalculator();
         }
+
         [Test]
         public void Should_return_zero_when_input_is_empty()
         {
             Assert.AreEqual(0, _stringCalculator.Add(string.Empty));
         }
-
 
         [TestCase("1", 1)]
         [TestCase("2", 2)]
@@ -25,12 +25,17 @@ namespace StringCalculatorTest
             Assert.AreEqual(expected, _stringCalculator.Add(input));
         }
 
-
         [Test]
         public void Should_sum_when_input_contains_two_numbers()
         {
             Assert.AreEqual(3, _stringCalculator.Add("1,2"));
+        }
 
+
+        [Test]
+        public void Should_sum_when_input_contains_unknown_number_of_numbers()
+        {
+            Assert.AreEqual(6, _stringCalculator.Add("1,2,3"));
         }
     }
 }

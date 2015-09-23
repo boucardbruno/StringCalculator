@@ -6,9 +6,13 @@ namespace StringCalculatorTest
         {
             if (string.IsNullOrEmpty(input))
                 return 0;
+            int sum = 0;
             var numbers = input.Split(',');
-            if (numbers.Length == 1) return int.Parse(input);
-            return int.Parse(numbers[0]) + int.Parse(numbers[1]);
+            foreach (var number in numbers)
+            {
+                sum += int.Parse(number);
+            }
+            return sum;
         }
     }
 }

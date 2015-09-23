@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace StringCalculatorTest
@@ -7,20 +8,26 @@ namespace StringCalculatorTest
     {
         public int Add(string input)
         {
-            char delimiter = ',';
+            return ExtractNumbers(input).Sum();
+        }
+
+        private static IEnumerable<int> ExtractNumbers(string input)
+        {
+            var delimiter = ',';
             if (input.StartsWith("//"))
             {
                 delimiter = input[2];
                 input = input.Substring(3);
             }
-            var numbers =
-                input.Split(new[] {delimiter, '\n'}, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
+
+            var numbers = input.Split(new[] {delimiter, '\n'}, StringSplitOptions.RemoveEmptyEntries)
+                .Select(int.Parse).ToList();
 
             var negativesNumbers = numbers.FindAll(n => n < 0);
             if (negativesNumbers.Any())
-                throw new Exception(string.Format("Negatives not allowed: {0}",string.Join(",", negativesNumbers)));
+                throw new Exception($"Negatives not allowed: {string.Join(",", negativesNumbers)}");
 
-            return numbers.Sum();
+            return numbers;
         }
     }
 }
